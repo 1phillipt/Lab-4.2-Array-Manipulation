@@ -12,7 +12,8 @@ let updateItem = document.getElementById("updateItemButton");
 let cartList = document.getElementById("cart");
 
 //grabs the input and inserts into the card array
-addItemButton.addEventListener("click", function () {
+  addItemButton.addEventListener("click", function () {
+
   let item = itemInput.value;
 
   if (item === "") {
@@ -22,12 +23,15 @@ addItemButton.addEventListener("click", function () {
 
   ShoppingList.push(item); // Add item to cart array
   renderCart();
-  itemInput.value = ""; // Clear the input field
+  itemInput.value = ""; // Clear the input field  
+  displayList(); //console log the shopping list items
 });
 
 removeLastItemButton.addEventListener("click", function () {
   ShoppingList.pop(); // Remove last item from cart array
   renderCart();
+  displayList(); //console log the shopping list items
+
 });
 
 function renderCart() {
@@ -51,19 +55,29 @@ removeItemButton.addEventListener("click", function () {
    
 }
 renderCart();
-console.log(ShoppingList);
 });
 
 updateItem.addEventListener("click", function(){
+    
     let replaceItemValue = replaceItem.value;
     let replaceWithValue = replaceWith.value;
+
+    
 
     const indexOfReplaceItem = ShoppingList.indexOf(replaceItemValue);
 
     ShoppingList.splice(indexOfReplaceItem,1,replaceWithValue);
-     
+     replaceItem.value ="";
+     replaceWith.value="";
     renderCart();
    
 })
 
-function
+
+//displays the list items in console
+function displayList(){
+  for(const listItem of ShoppingList){
+    console.log(listItem)
+  }
+}
+
