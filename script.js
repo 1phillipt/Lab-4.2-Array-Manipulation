@@ -1,0 +1,69 @@
+let ShoppingList = [];
+
+let itemInput = document.getElementById("itemInput");
+let replaceItem = document.getElementById("replaceItem");
+let replaceWith = document.getElementById("replaceWith");
+
+let addItemButton = document.getElementById("addItemButton");
+let removeLastItemButton = document.getElementById("removeLastItemButton");
+
+let removeItemButton = document.getElementById("removeItemButton");
+let updateItem = document.getElementById("updateItemButton");
+let cartList = document.getElementById("cart");
+
+//grabs the input and inserts into the card array
+addItemButton.addEventListener("click", function () {
+  let item = itemInput.value;
+
+  if (item === "") {
+    alert("Please enter an item.");
+    return;
+  }
+
+  ShoppingList.push(item); // Add item to cart array
+  renderCart();
+  itemInput.value = ""; // Clear the input field
+});
+
+removeLastItemButton.addEventListener("click", function () {
+  ShoppingList.pop(); // Remove last item from cart array
+  renderCart();
+});
+
+function renderCart() {
+  cartList.innerHTML = ""; // Clear existing list
+  for (let i = 0; i < ShoppingList.length; i++) {
+    let listItem = document.createElement("li");
+    listItem.innerText = ShoppingList[i];
+    cartList.appendChild(listItem);
+  }
+}
+
+removeItemButton.addEventListener("click", function () {
+  let item = itemInput.value;
+
+  console.log("this will be deleted from the list - " + itemInput.value);
+
+  const index = ShoppingList.indexOf(item);
+
+  if(index > -1){
+    cart.splice(index, 1);
+   
+}
+renderCart();
+console.log(ShoppingList);
+});
+
+updateItem.addEventListener("click", function(){
+    let replaceItemValue = replaceItem.value;
+    let replaceWithValue = replaceWith.value;
+
+    const indexOfReplaceItem = ShoppingList.indexOf(replaceItemValue);
+
+    ShoppingList.splice(indexOfReplaceItem,1,replaceWithValue);
+     
+    renderCart();
+   
+})
+
+function
