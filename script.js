@@ -4,12 +4,14 @@ let itemInput = document.getElementById("itemInput");
 let replaceItem = document.getElementById("replaceItem");
 let replaceWith = document.getElementById("replaceWith");
 
+
 let addItemButton = document.getElementById("addItemButton");
 let removeLastItemButton = document.getElementById("removeLastItemButton");
 
 let removeItemButton = document.getElementById("removeItemButton");
 let updateItem = document.getElementById("updateItemButton");
 let cartList = document.getElementById("cart");
+let filterItem = document.getElementById("fileterButton")
 
 //grabs the input and inserts into the card array
   addItemButton.addEventListener("click", function () {
@@ -62,7 +64,7 @@ updateItem.addEventListener("click", function(){
     let replaceItemValue = replaceItem.value;
     let replaceWithValue = replaceWith.value;
 
-    
+  
 
     const indexOfReplaceItem = ShoppingList.indexOf(replaceItemValue);
 
@@ -80,4 +82,17 @@ function displayList(){
     console.log(listItem)
   }
 }
+
+//filter click event listener
+
+filterItem.addEventListener("click", function(){
+  let item = itemInput.value;
+   if (item === "") {
+    alert("Please enter an item to filter by.");
+    return;
+  }
+  const filter = ShoppingList.filter((s)=>s===item);
+  console.log(filter);
+
+})
 
